@@ -1,5 +1,3 @@
-package com.github.kamilcieslik.academic;
-
 class DotProduct {
     public native void helloNative();
 

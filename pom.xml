@@ -8,21 +8,4 @@
     <artifactId>scalar_product_of_vectors_with_jni</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <packaging>pom</packaging>
-    <modules>
-        <module>java</module>
-        <module>native</module>
-    </modules>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>native-maven-plugin</artifactId>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
 </project>
