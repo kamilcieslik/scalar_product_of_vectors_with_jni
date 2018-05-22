@@ -1,4 +1,8 @@
 public class HelloJNI {
+    public static void printDupa(){
+        System.out.println("Dupsko");
+    }
+
     static {
         System.loadLibrary("hello"); // Load native library at runtime
         // hello.dll (Windows) or libhello.so (Unixes)
