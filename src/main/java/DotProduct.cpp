@@ -7,14 +7,63 @@ using namespace std;
 
 // Implementation of native method sayHello() of HelloJNI class
 JNIEXPORT void JNICALL Java_DotProduct_sayHello(JNIEnv *env, jobject thisObj) {
-    jclass hello_world_class = env->FindClass("DotProduct");
-
-    jmethodID print_dupa_method;
-    print_dupa_method = env->GetStaticMethodID(hello_world_class, "printDupa","()V");
-    env->CallStaticIntMethod(hello_world_class, print_dupa_method);
-
 	cout << "Hello World from C++!" << endl;
-   return;
+    return;
+}
+
+JNIEXPORT jdouble JNICALL Java_DotProduct_multi01(JNIEnv *env, jobject thisObj, jdoubleArray vectorA, jdoubleArray vectorB) {
+    jclass dotProductClass = env->FindClass("DotProduct");
+
+    jsize number_of_elements = env->GetArrayLength(vectorA);
+
+    jdouble *jdoubleArrayA = env->GetDoubleArrayElements(vectorA, NULL);
+    jdouble *jdoubleArrayB = env->GetDoubleArrayElements(vectorB, NULL);
+
+    jdouble result = 0;
+    for (int i = 0; i < number_of_elements; i++)
+    {
+        result += jdoubleArrayA[i] * jdoubleArrayB[i];
+    }
+
+    jmethodID setC;
+    setC = env->GetMethodID(dotProductClass, "setC", "(D)V");
+    env->CallVoidMethod(thisObj, setC, result);
+
+    env->DeleteLocalRef(dotProductClass);
+    env->DeleteLocalRef(thisObj);
+    env->DeleteLocalRef(vectorA);
+    env->DeleteLocalRef(vectorB);
+    return result;
+}
+
+JNIEXPORT jdouble JNICALL Java_DotProduct_multi02(JNIEnv *env, jobject thisObj, jdoubleArray vectorA) {
+    jclass dotProductClass = env->FindClass("DotProduct");
+
+    jsize number_of_elements = env->GetArrayLength(vectorA);
+
+    jdouble *jdoubleArrayA = env->GetDoubleArrayElements(vectorA, NULL);
+
+    jmethodID getB;
+    getB = env->GetMethodID(dotProductClass, "getB", "()[D");
+    jdoubleArray vectorB = (jdoubleArray) env->CallObjectMethod(thisObj, getB);
+
+    jdouble *jdoubleArrayB = env->GetDoubleArrayElements(vectorB, NULL);
+
+    jdouble result = 0;
+    for (int i = 0; i < number_of_elements; i++)
+    {
+        result += jdoubleArrayA[i] * jdoubleArrayB[i];
+    }
+
+    jmethodID setC;
+    setC = env->GetMethodID(dotProductClass, "setC", "(D)V");
+    env->CallVoidMethod(thisObj, setC, result);
+
+    env->DeleteLocalRef(dotProductClass);
+    env->DeleteLocalRef(thisObj);
+    env->DeleteLocalRef(vectorA);
+    env->DeleteLocalRef(vectorB);
+    return result;
 }
 
 JNIEXPORT void JNICALL Java_DotProduct_multi03(JNIEnv *env, jobject thisObj) {
@@ -81,5 +130,9 @@ JNIEXPORT void JNICALL Java_DotProduct_multi03(JNIEnv *env, jobject thisObj) {
     multi04 = env->GetMethodID(dotProductClass, "multi04", "()V");
     env->CallVoidMethod(thisObj, multi04);
 
-   return;
+    env->DeleteLocalRef(dotProductClass);
+    env->DeleteLocalRef(thisObj);
+    env->DeleteLocalRef(vectorA);
+    env->DeleteLocalRef(vectorB);
+    return;
 }

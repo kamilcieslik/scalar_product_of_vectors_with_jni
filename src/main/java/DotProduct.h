@@ -9,19 +9,27 @@ extern "C" {
 #endif
 /*
  * Class:     DotProduct
- * Method:    multi01
- * Signature: ([Ljava/lang/Double;[Ljava/lang/Double;)Ljava/lang/Double;
+ * Method:    sayHello
+ * Signature: ()V
  */
-JNIEXPORT jobject JNICALL Java_DotProduct_multi01
-  (JNIEnv *, jobject, jobjectArray, jobjectArray);
+JNIEXPORT void JNICALL Java_DotProduct_sayHello
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     DotProduct
+ * Method:    multi01
+ * Signature: ([D[D)D
+ */
+JNIEXPORT jdouble JNICALL Java_DotProduct_multi01
+  (JNIEnv *, jobject, jdoubleArray, jdoubleArray);
 
 /*
  * Class:     DotProduct
  * Method:    multi02
- * Signature: ([Ljava/lang/Double;)Ljava/lang/Double;
+ * Signature: ([D)D
  */
-JNIEXPORT jobject JNICALL Java_DotProduct_multi02
-  (JNIEnv *, jobject, jobjectArray);
+JNIEXPORT jdouble JNICALL Java_DotProduct_multi02
+  (JNIEnv *, jobject, jdoubleArray);
 
 /*
  * Class:     DotProduct
@@ -29,14 +37,6 @@ JNIEXPORT jobject JNICALL Java_DotProduct_multi02
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_DotProduct_multi03
-  (JNIEnv *, jobject);
-
-/*
- * Class:     DotProduct
- * Method:    sayHello
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_DotProduct_sayHello
   (JNIEnv *, jobject);
 
 #ifdef __cplusplus
