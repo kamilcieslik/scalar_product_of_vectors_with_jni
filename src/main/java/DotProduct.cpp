@@ -53,10 +53,9 @@ JNIEXPORT void JNICALL Java_DotProduct_multi03(JNIEnv *env, jobject thisObj) {
     }
 
     env->SetDoubleArrayRegion(vectorA, 0, number_of_elements, fillVectorA);
-   // javaVectorA = env->GetStaticFieldID(dotProductClass , "a", "Ljava/lang/String;");
-   // (*env)->SetStaticObjectField(dotProductClass, javaVectorA, vectorA);
-
-    // TODO: Przekazanie wektora A do Javy.
+    jmethodID setA;
+    setA = env->GetMethodID(dotProductClass, "setA", "([D)V");
+    env->CallVoidMethod(thisObj, setA, vectorA);
 
     jdouble fillVectorB[number_of_elements];
     for (int i = 0; i < number_of_elements; i++) {
@@ -74,7 +73,13 @@ JNIEXPORT void JNICALL Java_DotProduct_multi03(JNIEnv *env, jobject thisObj) {
     }
 
     env->SetDoubleArrayRegion(vectorB, 0, number_of_elements, fillVectorB);
-    // TODO: Przekazanie wektora A do Javy.
+    jmethodID setB;
+    setB = env->GetMethodID(dotProductClass, "setB", "([D)V");
+    env->CallVoidMethod(thisObj, setB, vectorB);
+
+    jmethodID multi04;
+    multi04 = env->GetMethodID(dotProductClass, "multi04", "()V");
+    env->CallVoidMethod(thisObj, multi04);
 
    return;
 }

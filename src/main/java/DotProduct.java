@@ -1,6 +1,6 @@
 class DotProduct {
     static {
-        System.loadLibrary("dotproduct"); // Load native library at runtime
+        Runtime.getRuntime().loadLibrary("dotproduct");
         // hello.dll (Windows) or libhello.so (Unixes)
     }
 
@@ -9,7 +9,7 @@ class DotProduct {
     private double c;
 
     public double[] getA() {
-        return a;
+        return this.a;
     }
 
     public void setA(double[] a) {
@@ -51,7 +51,14 @@ class DotProduct {
     public native void multi03();
 
     private void multi04() {
-        // mnoży a i b, wynik wpisuje do c
+        double result = 0;
+        for (int i = 0; i < a.length; i++){
+            result += a[i] * b[i];
+        }
+
+        c = result;
+
+        System.out.println("Wynik: " + c);
     }
 
     public static void printDupa() {
@@ -63,12 +70,12 @@ class DotProduct {
 
     // Test Driver
     public static void main(String[] args) {
+        DotProduct dotProduct = new DotProduct();
         if (args.length==3){
             System.out.println("chujowo");
         }
         else if (args.length == 0) {
-            new DotProduct().multi03();
-            System.out.println("git");
+            dotProduct.multi03();
         }
         else
             System.out.println("Podano niepoprawną ilość argumentów wejściowych.\n" +
