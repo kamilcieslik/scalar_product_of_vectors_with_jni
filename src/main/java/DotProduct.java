@@ -4,31 +4,31 @@ class DotProduct {
         // hello.dll (Windows) or libhello.so (Unixes)
     }
 
-    private Double[] a;
-    private Double[] b;
-    private Double c;
+    private double[] a;
+    private double[] b;
+    private double c;
 
-    public Double[] getA() {
+    public double[] getA() {
         return a;
     }
 
-    public void setA(Double[] a) {
+    public void setA(double[] a) {
         this.a = a;
     }
 
-    public Double[] getB() {
+    public double[] getB() {
         return b;
     }
 
-    public void setB(Double[] b) {
+    public void setB(double[] b) {
         this.b = b;
     }
 
-    public Double getC() {
+    public double getC() {
         return c;
     }
 
-    public void setC(Double c) {
+    public void setC(double c) {
         this.c = c;
     }
 
@@ -63,6 +63,21 @@ class DotProduct {
 
     // Test Driver
     public static void main(String[] args) {
-        new DotProduct().sayHello();  // invoke the native method
+        if (args.length==3){
+            System.out.println("chujowo");
+        }
+        else if (args.length == 0) {
+            new DotProduct().multi03();
+            System.out.println("git");
+        }
+        else
+            System.out.println("Podano niepoprawną ilość argumentów wejściowych.\n" +
+                    "Program należy uruchomić z trzema parametrami lub bez parametrów.\n" +
+                    "Opis parametrów wejściowych:\n" +
+                    "\t* 1. argument - tryb działania\n" +
+                    "\t\tT - okno do wprowadzania wektorów\n" +
+                    "\t\tF - wprowadzenie wektorów przez argumenty wejściowe\n" +
+                    "\t* 2. argument - wektor A\n" +
+                    "\t* 3. argument - wektor B\n");
     }
 }
