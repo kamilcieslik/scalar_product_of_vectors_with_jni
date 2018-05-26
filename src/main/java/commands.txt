@@ -1,4 +1,4 @@
-0. export PATH=/usr/lib/jvm/jdk1.8.0_162
+0. export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_162
 
 1. javac -h . DotProduct.java
 2. g++ -fPIC -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" -shared -o libdotproduct.so DotProduct.cpp
