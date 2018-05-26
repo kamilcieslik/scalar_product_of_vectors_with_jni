@@ -1,3 +1,5 @@
-javac -h . DotProduct.java
-g++ -fPIC -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" -shared -o libdotproduct.so DotProduct.cpp
-java -Djava.library.path=. DotProduct T 1 2 1 2
+0. export PATH=/usr/lib/jvm/jdk1.8.0_162
+
+1. javac -h . DotProduct.java
+2. g++ -fPIC -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" -shared -o libdotproduct.so DotProduct.cpp
+3. java -Djava.library.path=. DotProduct T 1 2 1 2
